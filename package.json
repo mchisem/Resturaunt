@@ -1,0 +1,22 @@
+{
+  "name": "resturaunt",
+  "version": "1.0.0",
+  "description": "Mini-project for class",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mchisem/Resturaunt.git"
+  },
+  "author": "Abelard, Michael, Gwen, Maya",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/mchisem/Resturaunt/issues"
+  },
+  "homepage": "https://github.com/mchisem/Resturaunt#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
