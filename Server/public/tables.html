@@ -128,11 +128,17 @@
             const tableData = data[i]
             const table = tableWrapper.find("#table_" + (i + 1));
             if (tableData.empty) {
+
+                table.find(".table_taken").text("This table is empty! make your reservation now!")
+
                 table.find(".customer_name").text("");
                 table.find(".customer_email").text("");
                 table.find(".customer_phone").text("");
                 table.find(".customer_id").text("");
             } else {
+
+                table.find(".table_taken").text("");
+
                 table.find(".customer_name").text(tableData.name);
                 table.find(".customer_email").text(tableData.email);
                 table.find(".customer_phone").text(tableData.phone);
