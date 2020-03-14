@@ -19,42 +19,57 @@
         <button>Make Reservation</button>
     </div>
     <div class="container">
+        <div id="tablesWrapper">
+            <div class="table" id="table_1">
 
-        <div class="table" id="table_1">
-            <span class="customer_name"></span>
-            <span class="customer_email"></span>
-            <span class="customer_id"></span>
-            <span class="customer_phone"></span>
+                <span class = "table_taken"></span>
+
+                <span class="customer_name"></span>
+                <span class="customer_email"></span>
+                <span class="customer_id"></span>
+                <span class="customer_phone"></span>
+            </div>
+    
+            <div class="table" id="table_2">
+
+                <span class = "table_taken"></span>
+
+                <span class="customer_name"></span>
+                <span class="customer_email"></span>
+                <span class="customer_id"></span>
+                <span class="customer_phone"></span>
+            </div>
+    
+            <div class="table" id="table_3">
+
+                <span class = "table_taken"></span>
+
+                <span class="customer_name">1</span>
+                <span class="customer_email">1</span>
+                <span class="customer_id">1</span>
+                <span class="customer_phone">1</span>
+            </div>
+    
+            <div class="table" id="table_4">
+
+                <span class = "table_taken"></span>
+
+                <span class="customer_name">1</span>
+                <span class="customer_email">1</span>
+                <span class="customer_id">1</span>
+                <span class="customer_phone">1</span>
+            </div>
+    
+            <div class="table" id="table_5">
+
+                <span class = "table_taken"></span>
+
+                <span class="customer_name">1</span>
+                <span class="customer_email">1</span>
+                <span class="customer_id">1</span>
+                <span class="customer_phone">1</span>
+            </div>
         </div>
-
-        <div class="table" id="table_2">
-            <span class="customer_name"></span>
-            <span class="customer_email"></span>
-            <span class="customer_id"></span>
-            <span class="customer_phone"></span>
-        </div>
-
-        <div class="table" id="table_3">
-            <span class="customer_name"></span>
-            <span class="customer_email"></span>
-            <span class="customer_id"></span>
-            <span class="customer_phone"></span>
-        </div>
-
-        <div class="table" id="table_4">
-            <span class="customer_name"></span>
-            <span class="customer_email"></span>
-            <span class="customer_id"></span>
-            <span class="customer_phone"></span>
-        </div>
-
-        <div class="table" id="table_5">
-            <span class="customer_name"></span>
-            <span class="customer_email"></span>
-            <span class="customer_id"></span>
-            <span class="customer_phone"></span>
-        </div>
-
     </div>
     <!--Bootstrap Javascript-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -70,41 +85,61 @@
                         name: "bob",
                         email: "bob@mail",
                         id: 1234,
-                        phone: 124356
+                        phone: 124356,
+                        empty: false
                     },
                     {
                         name: "bob",
                         email: "bob@mail",
                         id: 1234,
-                        phone: 124356
+                        phone: 124356,
+                        empty: false
                     },
                     {
                         name: "bob",
                         email: "bob@mail",
                         id: 1234,
-                        phone: 124356
+                        phone: 124356,
+                        empty: false
                     },
                     {
                         name: "bob",
                         email: "bob@mail",
                         id: 1234,
-                        phone: 124356
+                        phone: 124356,
+                        empty: false
+                    },
+                    {
+                        name: "bob",
+                        email: "bob@mail",
+                        id: 1234,
+                        phone: 124356,
+                        empty: true
                     }
                 ]
             }
         }
 
-        const tables = $(".table").toArray();
+        const tableWrapper = $("#tablesWrapper");
 
-        const data = getApiData();
+        const data = getApiData().tables;
 
-        for (let i = 0; i < tables.length; i++) {
-            const e = tables[i];
+        for (let i = 0; i < data.length; i++) {
+            const tableData = data[i]
+            const table = tableWrapper.find("#table_" + (i + 1));
+            if (tableData.empty) {
+                table.find(".customer_name").text("");
+                table.find(".customer_email").text("");
+                table.find(".customer_phone").text("");
+                table.find(".customer_id").text("");
+            } else {
+                table.find(".customer_name").text(tableData.name);
+                table.find(".customer_email").text(tableData.email);
+                table.find(".customer_phone").text(tableData.phone);
+                table.find(".customer_id").text(tableData.id);
+            }
             
         }
-
-
-        
     </script>
 </body>
 </html>
