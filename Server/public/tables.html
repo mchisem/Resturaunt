@@ -19,9 +19,9 @@
         <button>Make Reservation</button>
     </div>
     <div class="container">
-        <h1 style = "text-align: center;">
+        <h2 style = "text-align: center;">
             Tables:
-        </h1>
+        </h2>
         <div id="tablesWrapper">
             <div class="row">
 
@@ -138,18 +138,16 @@
                         </div>
                     </div>
                 </div>
-                
             </div>
-            
-    
-            
-    
-            
-    
-            
-    
-            
         </div>
+        <h2 style="text-align: center;">
+            Wait List
+        </h2>
+        <div id = "waitlistWrapper">
+
+        </div>
+
+        
     </div>
     <!--Bootstrap Javascript-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -196,16 +194,30 @@
                         phone: 124356,
                         empty: true
                     }
+                ],
+                waitList: [
+                    {
+                        name: "bob",
+                        email: "bob@mail",
+                        id: 1234,
+                        phone: 124356,
+                    },
+                    {
+                        name: "bob",
+                        email: "bob@mail",
+                        id: 1234,
+                        phone: 124356,
+                    }
                 ]
             }
         }
 
         const tableWrapper = $("#tablesWrapper");
 
-        const data = getApiData().tables;
-
-        for (let i = 0; i < data.length; i++) {
-            const tableData = data[i]
+        const data = getApiData();
+        //Set the Tables
+        for (let i = 0; i < data.tables.length; i++) {
+            const tableData = data.tables[i]
             const table = tableWrapper.find("#table_" + (i + 1));
             if (tableData.empty) {
 
@@ -219,12 +231,34 @@
 
                 table.find(".table_taken").text("");
 
-                table.find(".customer_name").text(tableData.name);
-                table.find(".customer_email").text(tableData.email);
-                table.find(".customer_phone").text(tableData.phone);
-                table.find(".customer_id").text(tableData.id);
+                table.find(".customer_name").text("Name: " + tableData.name);
+                table.find(".customer_email").text("Email: " + tableData.email);
+                table.find(".customer_phone").text("Phone Number: " + tableData.phone);
+                table.find(".customer_id").text("Customer ID: " + tableData.id);
             }
-            
+        }
+
+        //Write the waitlist
+        for (let i = 0; i < data.waitList.length; i++) {
+            const {name, email, id, phone} = data.waitList[i];
+            html = 
+`<div class = "row" style = "margin-top: 2rem">
+    <div class = "col-md-12">
+        <div class="card mx-auto">
+            <div class="card-header">
+                <span>${name}</span>
+            </div>
+            <div class="card-body">
+                <p class="card-text">
+                    <span>Email: ${email}</span> <br>
+                    <span>Phone Number: ${phone}</span> <br>
+                    <span>Customer ID: ${id}</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>`;
+            $("#waitlistWrapper").append(html);
         }
     </script>
 </body>
